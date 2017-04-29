@@ -1,0 +1,14 @@
+.comment {
+    padding-left: 15px;
+}
+
+.textButton {
+    color: #808080;
+    font-weight: 600;
+    cursor: hand;
+    cursor: pointer;
+}
+
+.textButton:hover {
+    text-decoration: underline;
+}
