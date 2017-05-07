@@ -18,6 +18,10 @@ class InputAreaContainer extends Component {
   }
 
   submit() {
+    if (this.state.body === '') {
+      window.alert('Empty Comment!');
+      return;
+    }
     const comment = this.state;
     comment.timestamp = Date.now();
     comment.author = this.props.author;
