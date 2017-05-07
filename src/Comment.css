@@ -1,14 +1,80 @@
+.childComment {
+    border-left-color: rgb(221, 221, 255);
+    border-left-width: 1px;
+    border-left-style: dotted;
+}
+
 .comment {
-    padding-left: 15px;
+    margin-left: 15px;
+    margin-top: 10px;
+    padding: 0px;
 }
 
 .textButton {
-    color: #808080;
+    color: #888;
     font-weight: 600;
     cursor: hand;
     cursor: pointer;
+    padding-right: 8px;
+    text-decoration: none;
 }
 
 .textButton:hover {
     text-decoration: underline;
+}
+
+.parallelBlock {
+    display: flex;
+}
+
+.id {
+    font-weight: bold;
+    color: #369;
+}
+
+.foldButton {
+    color: #369;
+    margin-right: 5px;
+}
+
+.postTime {
+    color: #888;
+    margin-left: 2em;
+}
+
+.commentBody {
+    line-height: 19px;
+    margin: 5px 0;
+    max-width: 40em;
+    word-break: break-all;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.icon {
+    float: left;
+    margin-top: 1px;
+    margin-right: 7px;
+    color: #AAA;
+    font-size: 15px;
+}
+
+.fa {
+    display: block;
+    cursor: hand;
+    cursor: pointer;
+}
+
+.child {
+    margin-left: 10px;
+}
+
+.commentInner {
+    margin-left: 10px;
+}
+
+.gold {
+    color: #9A7D2E;
 }

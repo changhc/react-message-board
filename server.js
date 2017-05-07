@@ -19,18 +19,24 @@ server.get('/api/comments', (req, res) => {
 });
 
 server.post('/api/comments', (req, res) => {
-  const list = req.body.id.split('-');
+  const comment = req.body;
+  const list = req.body.parentId.split('-');
   console.log(list);
   console.log('new comment!');
   let temp = data;
-  let i = 0;
-  while (i !== list.length - 1) {
+  let i = 1;
+  while (i !== list.length) {
     temp = temp.child[parseInt(list[i], 10)];
     i += 1;
   }
-  temp.child.push(req.body);
+  comment.id = `${req.body.parentId}-${temp.child.length}`;
+  temp.child.push(comment);
   // data.push(req.body);
   res.sendStatus(202);
+});
+
+server.get('/:user', (req, res) => {
+  res.status(200).send(req.params.user);
 });
 
 server.listen(port, () => {

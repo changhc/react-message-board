@@ -1,37 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-const keyDown = (event) => {
-  const e = event;
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault();
-    e.target.blur();
-  }
-}
+import styles from './InputArea.css';
 
 const InputArea = props => (
-  <div>
+  <div className={styles.inputArea}>
     <div>
-      <div>Posting as</div>
-      <div
-        contentEditable
-        suppressContentEditableWarning
-        onKeyDown={keyDown}
-        onBlur={event => props.slotChanged(event.target.textContent, 'author')}
-      >{props.author}</div>
+      <textarea rows="5" cols="60" placeholder="Your comments..." onChange={event => props.bodyChanged(event.target.value, 'body')} />
     </div>
-    <div>
-      <textarea rows="3" cols="60" onChange={event => props.slotChanged(event.target.value, 'body')}>{props.body}</textarea>
-      <button onClick={props.submit}>Submit</button>
-    </div>
+    <button className={styles.button} onClick={props.submit}>Submit</button>
   </div>
 );
 
 InputArea.propTypes = {
   submit: PropTypes.func.isRequired,
-  slotChanged: PropTypes.func.isRequired,
-  author: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired,
+  bodyChanged: PropTypes.func.isRequired,
 };
 
 export default InputArea;
