@@ -13,7 +13,7 @@
 .comment.collapsed {
     padding-bottom: 10px;
     line-height: 14px;
-    margin-top: 0px;
+    margin-top: 5px;
 }
 
 .textButton {
@@ -93,7 +93,7 @@
 }
 
 .fa {
-    display: block;
+    display: block !important;
     cursor: hand;
     cursor: pointer;
 }

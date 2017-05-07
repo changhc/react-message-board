@@ -13,9 +13,9 @@ Reddit style. Cool, huh?
 ## Usage
 
 #### Server
-``` npm run start ```
+``` npm start ```
 
 #### Front-end only
-``` npm run start ```
+``` npm start ```
 
 ``` npm run build ``` to create an optimized version.

@@ -27,7 +27,7 @@ class InputAreaContainer extends Component {
     comment.author = this.props.author;
     comment.parentId = this.props.parentId;
     this.setState({ body: '' });
-    window.fetch('http://localhost:5000/api/comments', {
+    window.fetch('/api/comments', {
       method: 'POST',
       mode: 'cors',
       headers: { 'Content-Type': 'application/json' },

@@ -27,13 +27,12 @@ class App extends Component {
   }
 
   fetchComments() {
-    window.fetch('http://localhost:5000/api/comments', {
+    window.fetch('/api/comments', {
       method: 'GET',
       mode: 'cors',
       headers: { Accept: 'application/json' },
     }).then(res => res.json(),
     ).then((body) => {
-      console.log(body);
       this.setState({ comments: body.child });
     }).catch((err) => {
       console.error(err);
@@ -53,7 +52,6 @@ class App extends Component {
   }
 
   render() {
-    console.dir(window.location);
     return (
       <div>
         <div className={styles.header}>

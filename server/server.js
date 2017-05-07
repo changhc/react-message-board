@@ -3,10 +3,10 @@ const bodyParser = require('body-parser');
 
 const server = express();
 
-const port = 5000;
+const port = 3000;
 const data = { child: [] };
 
-server.use(express.static('/public'));
+server.use('/', express.static('public'));
 server.use(bodyParser.json());
 server.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -15,7 +15,7 @@ server.use((req, res, next) => {
 });
 
 server.get('/api/comments', (req, res) => {
-  res.send(200, JSON.stringify(data));
+  res.status(200).send(JSON.stringify(data));
 });
 
 server.post('/api/comments', (req, res) => {
@@ -31,12 +31,7 @@ server.post('/api/comments', (req, res) => {
   }
   comment.id = `${req.body.parentId}-${temp.child.length}`;
   temp.child.push(comment);
-  // data.push(req.body);
   res.sendStatus(202);
-});
-
-server.get('/:user', (req, res) => {
-  res.status(200).send(req.params.user);
 });
 
 server.listen(port, () => {
