@@ -35,7 +35,7 @@ const Comment = props => (
             <a className={`${styles.textButton} ${styles.aButton}`}>save</a>
             <a className={`${styles.textButton} ${styles.aButton}`}>parent</a>
             <a className={`${styles.textButton} ${styles.aButton}`}>report</a>
-            <a className={`${styles.textButton} ${styles.gold}`} onClick={() => window.alert('Giving gold to ChangHC...')}>give gold</a>
+            <a className={`${styles.textButton} ${styles.aButton} ${styles.gold}`} onClick={() => window.alert('Giving gold to ChangHC...')}>give gold</a>
             <a className={`${styles.textButton} ${styles.aButton}`} onClick={props.replyClick}>{props.display ? 'cancel' : 'reply'}</a>
           </div>
           {props.display
