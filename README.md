@@ -5,6 +5,10 @@ This is a reddit-like message board.
 ## Feature
 Reddit style. Cool, huh?
 
+A slight difference is that I removed the "cancel reply" button and merged it with the "reply" button of each comment.
+
+See the demo [here](https://server-hnujwrlwbk.now.sh/).
+
 ## Todo
 1. Implement "load more comments". Now it displays all child comments, which can deteriorate UX.
 2. Modify "child count". Now it just shows the number of "child" rather than all descendants as Reddit.
