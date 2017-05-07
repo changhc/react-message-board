@@ -4,42 +4,52 @@ import InputAreaContainer from './InputAreaContainer';
 import styles from './Comment.css';
 
 const Comment = props => (
-  <div className={`${styles.comment} ${props.obj.parentId === 'root' ? '' : styles.childComment}`}>
+  <div className={`${styles.comment} ${props.obj.parentId === 'root' ? '' : styles.childComment} ${props.collapsed ? styles.collapsed : ''}`}>
     <div className={styles.commentInner}>
-      <div className={`${styles.inline} ${styles.icon}`}>
+      <div className={`${styles.inline} ${styles.upDown}`}>
         <i className={`${styles.fa} fa fa-arrow-up`} aria-hidden="true" />
         <i className={`${styles.fa} fa fa-arrow-down`} aria-hidden="true" />
       </div>
       <div className={styles.inline}>
-        <div className={styles.parallelBlock}>
+        <div className={`${styles.parallelBlock} ${styles.header}`}>
           <div className={styles.parallelBlock}>
-            <a className={styles.foldButton}>[-]</a>
-            <div className={styles.id}>{props.obj.author}</div>
+            <a className={`${styles.collapseButton} ${styles.aButton}`} onClick={() => props.collapseClick()}>{props.collapsed ? '[+]' : '[–]'}</a>
+            <a className={`${styles.id} ${styles.aButton}`}>{props.obj.author}</a>
           </div>
-          <div
-            className={styles.postTime}
-            title={new Date(props.obj.timestamp).toLocaleString()}
-          >1 point {props.timeString}</div>
+          <div className={styles.parallelBlock}>
+            <div className={styles.commentMeta}>1 point</div>
+            <div
+              className={styles.commentMeta}
+              title={new Date(props.obj.timestamp).toLocaleString()}
+            >{props.timeString}</div>
+            <div className={`${styles.commentMeta} ${styles.childCount}`}>
+              ({props.obj.child.length} child{props.obj.child.length > 1 ? 'ren' : ''})
+            </div>
+          </div>
         </div>
-        <div className={styles.commentBody}>{props.obj.body}</div>
-        <div className={styles.parallelBlock}>
-          <a className={styles.textButton} href={`/${props.obj.timestamp}`}>permalink</a>
-          <a className={styles.textButton}>embed</a>
-          <a className={styles.textButton}>save</a>
-          <a className={styles.textButton}>parent</a>
-          <a className={styles.textButton}>report</a>
-          <a className={`${styles.textButton} ${styles.gold}`} onClick={() => window.alert('Giving gold to ChangHC...')}>give gold</a>
-          <a className={styles.textButton} onClick={props.click}>{props.display ? 'cancel' : 'reply'}</a>
+        <div className={styles.content}>
+          <div className={styles.commentBody}>{props.obj.body}</div>
+          <div className={`${styles.parallelBlock}`}>
+            <a className={`${styles.textButton} ${styles.aButton}`} href={`/${props.obj.timestamp}`}>permalink</a>
+            <a className={`${styles.textButton} ${styles.aButton}`}>embed</a>
+            <a className={`${styles.textButton} ${styles.aButton}`}>save</a>
+            <a className={`${styles.textButton} ${styles.aButton}`}>parent</a>
+            <a className={`${styles.textButton} ${styles.aButton}`}>report</a>
+            <a className={`${styles.textButton} ${styles.gold}`} onClick={() => window.alert('Giving gold to ChangHC...')}>give gold</a>
+            <a className={`${styles.textButton} ${styles.aButton}`} onClick={props.replyClick}>{props.display ? 'cancel' : 'reply'}</a>
+          </div>
+          {props.display
+            ? <InputAreaContainer
+              parentId={props.obj.id}
+              author={props.author}
+              reload={props.reload}
+            />
+            : null }
         </div>
-        {props.display
-          ? <InputAreaContainer
-            parentId={props.obj.id}
-            author={props.author}
-            reload={props.reload}
-          />
-          : null }
       </div>
-      {props.obj.child.map(props.renderComment)}
+      <div className={styles.content}>
+        {props.obj.child.map(props.renderComment)}
+      </div>
     </div>
   </div>
 );
@@ -57,10 +67,12 @@ Comment.propTypes = {
   renderComment: PropTypes.func.isRequired,
   obj: PropTypes.shape(commentType).isRequired,
   timeString: PropTypes.string.isRequired,
-  click: PropTypes.func.isRequired,
+  replyClick: PropTypes.func.isRequired,
   display: PropTypes.bool.isRequired,
   reload: PropTypes.func.isRequired,
   author: PropTypes.string.isRequired,
+  collapsed: PropTypes.bool.isRequired,
+  collapseClick: PropTypes.func.isRequired,
 };
 
 export { Comment, commentType };

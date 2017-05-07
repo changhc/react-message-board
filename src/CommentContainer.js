@@ -7,13 +7,19 @@ class CommentContainer extends Component {
     super();
     this.state = {
       displayInputArea: false,
+      collapsed: false,
     };
     this.replyButtonClick = this.replyButtonClick.bind(this);
+    this.collapseButtonClick = this.collapseButtonClick.bind(this);
     this.reload = this.reload.bind(this);
   }
 
   replyButtonClick() {
     this.setState({ displayInputArea: !this.state.displayInputArea });
+  }
+
+  collapseButtonClick() {
+    this.setState({ collapsed: !this.state.collapsed });
   }
 
   reload() {
@@ -43,8 +49,10 @@ class CommentContainer extends Component {
         timeString={timeString}
         display={this.state.displayInputArea}
         renderComment={this.props.renderComment}
-        click={this.replyButtonClick}
+        replyClick={this.replyButtonClick}
+        collapseClick={this.collapseButtonClick}
         reload={this.reload}
+        collapsed={this.state.collapsed}
       />
     );
   }
