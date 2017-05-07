@@ -10,6 +10,12 @@
     padding: 0px;
 }
 
+.comment.collapsed {
+    padding-bottom: 10px;
+    line-height: 14px;
+    margin-top: 0px;
+}
+
 .textButton {
     color: #888;
     font-weight: 600;
@@ -83,11 +89,7 @@
 
 .comment.collapsed .upDown {
     visibility: hidden;
-}
-
-.comment.collapsed {
-    padding-bottom: 10px;
-    line-height: 14px;
+    height: 1px;
 }
 
 .fa {
