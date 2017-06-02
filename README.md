@@ -1,4 +1,4 @@
-# web-hw2
+# react-message-board
 
 This is a reddit-like message board.
 
